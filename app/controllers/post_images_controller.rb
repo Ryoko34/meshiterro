@@ -6,12 +6,15 @@ class PostImagesController < ApplicationController
   def create
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = Current.user.id #Model名.カラム名 = ログイン中のユーザ情報を取得して代入
-    @post_image.save
-    redirect_to post_images_path #複数形は投稿一覧
+    if @post_image.save
+      redirect_to post_images_path #複数形は投稿一覧
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def index
-    @post_images = PostImage.all
+    @post_images = PostImage.page(params[:page])
   end
 
   def show

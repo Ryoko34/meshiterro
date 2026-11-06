@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id]) #↓PostImageモデル,Userモデル アソシエーションを持っている
-    @post_images = @user.post_images #特定のユーザ(@user)に関連づけられた全投稿(.post_images)を取得し、@post_imagesに渡す
+    @post_images = @user.post_images.page(params[:page]) #特定のユーザ(@user)に関連づけられた全投稿(.post_images)を取得し、@post_imagesに渡す
   end
 
   def edit
