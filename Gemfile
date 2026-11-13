@@ -65,4 +65,4 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'kaminari', '~> 1.2.1'
+gem 'kaminari', '~> 1.3.3'
